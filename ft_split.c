@@ -6,7 +6,7 @@
 /*   By: mel-mars < mel-mars@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 10:04:57 by mel-mars          #+#    #+#             */
-/*   Updated: 2023/01/02 16:07:44 by mel-mars         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:55:58 by mel-mars         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ static int	count_word(char const *s, char c)
 		i++;
 	}
 	return (count_w + 1);
-}
-
-static char	*str_w_c(char const *s, char c)
-{
-	char	*f;
-	char	*src;
-
-	f = ft_calloc(2, 1);
-	if (f == 0)
-		return (0);
-	f[0] = c;
-	if (s == NULL)
-		return (NULL);
-	src = ft_strtrim(s, f);
-	if (!src)
-		return (NULL);
-	free(f);
-	return (src);
 }
 
 static size_t	str_c(char *s, char c)
@@ -67,7 +49,7 @@ static void	split_2(char **split, char *s01, char c)
 	{
 		if (s01[i] == c)
 			i++;
-		if (s01[i] != c)
+		else
 		{
 			split[j] = ft_substr(s01, i, str_c(&s01[i], c));
 			if (split[j] == NULL)
@@ -85,15 +67,11 @@ static void	split_2(char **split, char *s01, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
-	char	*s01;
 
-	s01 = str_w_c(s, c);
-	if (s01 == NULL)
-		return (NULL);
-	split = ft_calloc(count_word(s01, c) + 1, sizeof(char *));
+	
+	split = ft_calloc(count_word((char *)s, c) + 1, sizeof(char *));
 	if (!split)
 		return (NULL);
-	split_2(split, s01, c);
-	free(s01);
+	split_2(split, (char *)s, c);
 	return (split);
 }
