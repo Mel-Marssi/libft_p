@@ -84,12 +84,8 @@ int	ft_hex_adress(size_t nb, char c)
 	i = count_num(nb, 16);
 	base_hxd = "0123456789abcdef";
 	if (nb > 15)
-	{
 		ft_hex_adress(nb / 16, c);
-		ft_putchar(base_hxd[nb % 16]);
-	}
-	else
-		ft_putchar(base_hxd[nb % 16]);
+	ft_putchar(base_hxd[nb % 16]);
 	return (i);
 }
 
@@ -102,11 +98,7 @@ int	ft_ip(size_t ip)
 	base_hxd = "0123456789abcdef";
 	i += ft_putstr("0x");
 	if (ip > 15)
-	{
 		i += ft_hex_adress(ip / 16, 'p');
-		i += ft_putchar(base_hxd[ip % 16]);
-	}
-	else
-		i += ft_putchar(base_hxd[ip % 16]);
+	i += ft_putchar(base_hxd[ip % 16]);
 	return (i);
 }
